@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'products/base.html' %}
+{% block content %}
+  <html lang="en">
+  <div class="container">
+    <div class="row">
+      {% for p in product %}
+      <div class="col-md-3 col-sm-12 col-lg-3 p-1">
+              <div class="card">
+                  <img src="media/{{ p.product_image }}" style="width:100%;" class="card-img-top" alt="{{ p.title }}">
+                    <div class="card-body">
+                      <h5 class="card-title"> {{ p.title }}</h5>
+                      <p class="card-text">Price:{{ p.price }}</p>
+                    </div>
+                  <div class='card-footer text-center'>
+                      <a href="cart/{{ p.slug }}" class="btn btn-success">Add to Cart</a>
+                  </div>
+              </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

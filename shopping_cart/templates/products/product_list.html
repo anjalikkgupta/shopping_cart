@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'products/base.html' %}
+{% block content %}
+    <html lang="en">
+    <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discounted Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cart in carts %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ cart.item.title }}</td>
+            <td>{{ cart.item.price }}</td>
+            <td>{{ cart.item.disc_price }}</td>
+            <td>{{ cart.quantity }}</td>
+            {% if cart.quantity >= 2 %}
+                <td>{{ cart.total_disc_price }}</td>
+            {% else %}
+                <td>{{ cart.total_price }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        <tr>
+          <th scope="row"></th>
+          <td colspan="4">Total</td>
+          <td>{{ order.get_totals}}</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td colspan="4" class="text-right ">
+            <a href="home" class="btn btn-warning mr-4">Continue Shoping</a>
+            <button class="btn btn-success mr-4">Proceed To Checkout</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+{% endblock %}
