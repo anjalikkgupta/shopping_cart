@@ -21,7 +21,12 @@
             <td>{{ cart.item.title }}</td>
             <td>{{ cart.item.price }}</td>
             <td>{{ cart.item.disc_price }}</td>
-            <td>{{ cart.quantity }}</td>
+            <td>
+                <a class="mr-2" href="{% url 'decrease-cart' cart.item.slug %}"><span class="badge badge-light"><i class="fa fa-minus-square-o" style="font-size:17px"></i></span></a>
+              {{ cart.quantity }}
+              <a class="ml-2" href="{% url 'increase-cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fa fa-plus-square-o" style="font-size:17px"></i></span></a>
+            </td>
+<!--            <td>{{ cart.quantity }}</td>-->
             {% if cart.quantity >= 2 %}
                 <td>{{ cart.total_disc_price }}</td>
             {% else %}
@@ -36,9 +41,9 @@
         </tr>
         <tr>
           <th scope="row"></th>
-          <td colspan="4" class="text-right ">
+          <td colspan="5" class="text-right ">
             <a href="home" class="btn btn-warning mr-4">Continue Shoping</a>
-            <button class="btn btn-success mr-4">Proceed To Checkout</button>
+            <a href="" class="btn btn-success mr-4">Proceed To Checkout</a>
           </td>
         </tr>
       </tbody>
